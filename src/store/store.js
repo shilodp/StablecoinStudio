@@ -6,16 +6,16 @@ const store = configureStore({
         auth: authReducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(persistToLocalStorage),
+        getDefaultMiddleware().concat(persistToSessionStorage),
 });
 
-function persistToLocalStorage(storeAPI) {
+function persistToSessionStorage(storeAPI) {
     return (next) => (action) => {
         const result = next(action);
         const state = storeAPI.getState();
 
-        localStorage.setItem("isAuthenticated", state.auth.isAuthenticated);
-        localStorage.setItem("user", JSON.stringify(state.auth.user));
+        sessionStorage.setItem("isAuthenticated", state.auth.isAuthenticated);
+        sessionStorage.setItem("user", JSON.stringify(state.auth.user));
 
         return result;
     };

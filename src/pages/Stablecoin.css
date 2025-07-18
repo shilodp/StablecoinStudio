@@ -8,6 +8,7 @@
 }
 
 .step-content {
-    margin-top: 32px;
+    margin: 75px auto 0;
     min-height: 300px;
+    max-width: 418px;
 }
