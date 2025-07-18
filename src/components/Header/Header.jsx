@@ -1,14 +1,14 @@
 import logo from "@assets/icon.svg";
-import search from "@assets/search.svg";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
     return (
         <header className="header">
             <div className="header-left">
-                <div className="logo">
+                <Link className="logo" to="/">
                     <img src={logo} />
-                </div>
+                </Link>
             </div>
             <div className="header-right">
                 <div className="site-name">Stablecoin Studio</div>

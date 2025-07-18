@@ -1,26 +1,33 @@
+import coins from "@assets/coins.svg";
+import users from "@assets/users.svg";
+import fingerprint from "@assets/fingerprint.svg";
+import pricetag from "@assets/pricetag.svg";
+import document from "@assets/document.svg";
+import cog from "@assets/cog.svg";
+import instruments from "@assets/instruments.svg";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 
 const links = [
-    { name: "Operations", icon: "⚙️", path: "#", disabled: true },
-    { name: "Transactions explorer", icon: "🔍", path: "#", disabled: true },
-    { name: "Fees management", icon: "💰", path: "#", disabled: true },
+    { name: "Operations", icon: coins, path: "#", disabled: true },
+    { name: "Transactions explorer", icon: users, path: "#", disabled: true },
+    { name: "Fees management", icon: fingerprint, path: "#", disabled: true },
     {
         name: "Exchange and Pool management",
-        icon: "🔄",
+        icon: pricetag,
         path: "#",
         disabled: true,
     },
     {
         name: "Reserves and liquidity control",
-        icon: "🏦",
+        icon: document,
         path: "#",
         disabled: true,
     },
-    { name: "Settings", icon: "⚙️", path: "#", disabled: true },
+    { name: "Settings", icon: cog, path: "#", disabled: true },
     {
         name: "Stablecoin Studio",
-        icon: "🧪",
+        icon: instruments,
         path: "/stablecoin",
         disabled: false,
     },
@@ -38,7 +45,7 @@ function Sidebar() {
                                     className="nav-item disabled"
                                     title="Coming soon"
                                 >
-                                    <span className="icon">{link.icon}</span>
+                                    <img className="icon" src={link.icon} />
                                     {link.name}
                                 </div>
                             ) : (
@@ -48,7 +55,7 @@ function Sidebar() {
                                         "nav-item" + (isActive ? " active" : "")
                                     }
                                 >
-                                    <span className="icon">{link.icon}</span>
+                                    <img className="icon" src={link.icon} />
                                     {link.name}
                                 </NavLink>
                             )}

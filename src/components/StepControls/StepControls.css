@@ -1,17 +1,23 @@
 .step-controls {
+    position: absolute;
+    bottom: 50px;
+    left: 30px;
+    right: 30px;
     display: flex;
     justify-content: flex-end;
     gap: 30px;
-    margin-top: 32px;
 }
 
 .step-btn {
+    height: 50px;
     padding: 10px 20px;
-    border-radius: 6px;
+    border-radius: 16px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 18px;
+    font-family: inherit;
     border: none;
     cursor: pointer;
+    min-width: 190px;
 }
 
 .step-btn.primary {
