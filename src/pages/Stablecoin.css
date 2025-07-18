@@ -1,0 +1,13 @@
+.stablecoin-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.step-content {
+    margin-top: 32px;
+    min-height: 300px;
+}

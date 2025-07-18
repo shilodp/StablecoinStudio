@@ -1,0 +1,29 @@
+.step1-container {
+    max-width: 600px;
+}
+
+.step1-container h2 {
+    margin-bottom: 20px;
+    color: #2b6cb0;
+}
+
+.step1-container label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.step1-container label span {
+    color: red;
+    margin-left: 4px;
+}
+
+.step1-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 6px;
+    font-size: 14px;
+}

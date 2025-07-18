@@ -1,0 +1,29 @@
+.step-final {
+    padding: 12px;
+}
+
+.step-final h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #2b6cb0;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 12px 24px;
+}
+
+.summary-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.label {
+    font-weight: 600;
+    color: #444;
+}
+
+.value {
+    color: #222;
+}

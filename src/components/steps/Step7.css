@@ -1,0 +1,21 @@
+.step7-container {
+    max-width: 600px;
+    min-height: 140px;
+    border: 2px dashed #bbb;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 12px;
+    text-align: center;
+}
+
+.step7-container.drag-over {
+    background-color: #bee3f8;
+    border-color: #2b6cb0;
+    color: #2b6cb0;
+}
