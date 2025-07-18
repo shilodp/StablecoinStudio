@@ -1,3 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+:root {
+    --color-red: #ff0000;
+    --color-white: #fff;
+    --color-black: #343c6a;
+    --color-black-2: #232323;
+    --color-blue: #1814f3;
+    --color-blue-2: #007aff;
+    --color-blue-3: #718ebf;
+    --color-blue-4: #8ba3cb;
+    --color-gray: #b1b1b1;
+    --color-gray-2: #c5c5d5;
+    --color-gray-3: #f5f7fa;
+    --color-gray-4: #d9d9d9;
+    --color-gray-5: #cdcdcd;
+    --color-gray-6: #b3b3b3;
+    --color-gray-7: #dfeaf2;
+    --color-gray-8: #e6eff5;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -6,4 +27,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    font-family: Inter;
+    font-size: 14px;
+    color: var(--color-black);
 }

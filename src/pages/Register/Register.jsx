@@ -126,8 +126,10 @@ function Register() {
     return (
         <div className="register-page">
             <form className="register-form" onSubmit={handleSubmit}>
-                <h1>Welcome to OpenStable Stablecoin Studio!</h1>
-                <p>
+                <h1 className="title">
+                    Welcome to OpenStable Stablecoin Studio!
+                </h1>
+                <p className="subtitle">
                     Please provide your information and accept the terms &
                     conditions below to utilize the application
                 </p>
@@ -159,7 +161,7 @@ function Register() {
                 <label>
                     Email<span>*</span>
                     <input
-                        placeholder="Type here..."
+                        placeholder="Paste here..."
                         name="email"
                         type="email"
                         value={form.email}

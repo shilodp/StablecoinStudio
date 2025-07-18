@@ -3,13 +3,6 @@
     min-height: calc(100vh - 57px); /* Вычитаем высоту хедера */
 }
 
-.sidebar {
-    width: 220px;
-    background-color: #f7f7f7;
-    border-right: 1px solid #ddd;
-    padding: 20px;
-}
-
 .dashboard-content {
     flex: 1;
     padding: 24px;
