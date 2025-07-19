@@ -1,0 +1,54 @@
+.toggle-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+
+    .toggle-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+    }
+
+    .toggle-input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .toggle-ui {
+        width: 48px;
+        height: 24px;
+        border-radius: 999px;
+        background-color: var(--color-gray-5);
+        transition: background-color 0.3s ease;
+        position: relative;
+    }
+
+    .toggle-ui.on {
+        background-color: var(--color-blue-2);
+    }
+
+    .toggle-circle {
+        width: 20px;
+        height: 20px;
+        background-color: var(--color-white);
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        transition: left 0.3s ease;
+    }
+
+    .toggle-ui.on .toggle-circle {
+        left: 26px;
+    }
+
+    .toggle-label {
+        font-size: 14px;
+        color: var(--color-blue-3);
+    }
+}

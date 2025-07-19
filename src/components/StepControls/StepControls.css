@@ -38,3 +38,10 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+.step-error-message {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: var(--color-red);
+}

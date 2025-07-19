@@ -1,27 +1,24 @@
 import "./StepNavigation.css";
 
-function StepNavigation({ currentStep, totalSteps, goToStep }) {
-    const steps = Array.from({ length: totalSteps }, (_, i) => i + 1);
-
+function StepNavigation({ currentStep, stepsList, goToStep }) {
     return (
         <div className="step-nav">
-            {steps.map((step) => (
+            {stepsList.map((step, index) => (
                 <div
-                    key={step}
+                    key={step.name}
                     className={
                         "step-nav-item" +
-                        (step === currentStep ? " active" : "") +
-                        (step < currentStep ? " clickable" : "") +
-                        (step > currentStep ? " disabled" : "")
+                        (index + 1 === currentStep ? " active" : "") +
+                        (index + 1 < currentStep ? " clickable" : "") +
+                        (index + 1 > currentStep ? " disabled" : "")
                     }
                     onClick={() => {
-                        if (step < currentStep) {
-                            goToStep(step);
+                        if (index + 1 < currentStep) {
+                            goToStep(index + 1);
                         }
                     }}
                 >
-                    <div className="step-circle">{step}</div>
-                    <div className="step-label">Step {step}</div>
+                    <div className="step-label">{step.name}</div>
                 </div>
             ))}
         </div>

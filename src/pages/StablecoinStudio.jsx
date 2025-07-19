@@ -2,34 +2,46 @@ import { useState } from "react";
 import StepNavigation from "@components/StepNavigation/StepNavigation.jsx";
 import StepControls from "@components/StepControls/StepControls.jsx";
 
-import Step1 from "@components/steps/Step1";
-import Step2 from "@components/steps/Step2";
-import Step3 from "@components/steps/Step3";
-import Step4 from "@components/steps/Step4";
-import Step5 from "@components/steps/Step5";
-import Step6 from "@components/steps/Step6";
-import Step7 from "@components/steps/Step7";
-import StepFinal from "@components/steps/StepFinal";
+import General from "@components/steps/General/General.jsx";
+import Step2 from "@components/steps/Step2/Step2.jsx";
+import Step3 from "@components/steps/Step3/Step3.jsx";
+import Step4 from "@components/steps/Step4/Step4.jsx";
+import Step5 from "@components/steps/Step5/Step5.jsx";
+import Step6 from "@components/steps/Step6/Step6.jsx";
+import Step7 from "@components/steps/Step7/Step7.jsx";
+import StepFinal from "@components/steps/Step8/StepFinal.jsx";
 
 import "./Stablecoin.css";
 
-const TOTAL_STEPS = 8;
+const STEPS = [
+    { name: "General" },
+    { name: "Pricing" },
+    { name: "Compliance" },
+    { name: "Permissions" },
+    { name: "Liquidity Bootstrap" },
+    { name: "Reserves + Yield" },
+    { name: "Minting" },
+    { name: "Summary" },
+];
 
 function StablecoinStudio() {
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({
-        // здесь все поля всех шагов
-        name: "",
-        symbol: "",
-        // и т.д.
+        stablecoinName: "",
+        stablecoinSymbol: "",
+        initialSupply: "",
+        decimals: "",
+        decimalsRadio: "block",
+        metadata: undefined,
     });
+    const totalSteps = STEPS.length;
 
     const goToStep = (step) => {
         if (step < currentStep) setCurrentStep(step);
     };
 
     const nextStep = () => {
-        if (currentStep < TOTAL_STEPS) {
+        if (currentStep < totalSteps) {
             setCurrentStep((prev) => prev + 1);
         }
     };
@@ -43,11 +55,36 @@ function StablecoinStudio() {
     const updateField = (field, value) => {
         setFormData({ ...formData, [field]: value });
     };
+    const validateStep = () => {
+        const result = {
+            state: false,
+            errorMessage: "",
+        };
+
+        switch (currentStep) {
+            case 1:
+                if (
+                    formData.stablecoinName?.trim() &&
+                    formData.stablecoinSymbol?.trim() &&
+                    formData.initialSupply?.trim() &&
+                    formData.decimals?.trim()
+                ) {
+                    result.state = true;
+                } else {
+                    result.errorMessage = "Please fill in all required fields";
+                }
+                break;
+            default:
+                result.state = true;
+        }
+
+        return result;
+    };
 
     const renderStep = () => {
         switch (currentStep) {
             case 1:
-                return <Step1 data={formData} updateField={updateField} />;
+                return <General data={formData} updateField={updateField} />;
             case 2:
                 return <Step2 data={formData} updateField={updateField} />;
             case 3:
@@ -71,7 +108,7 @@ function StablecoinStudio() {
         <div className="stablecoin-container">
             <StepNavigation
                 currentStep={currentStep}
-                totalSteps={TOTAL_STEPS}
+                stepsList={STEPS}
                 goToStep={goToStep}
             />
 
@@ -79,10 +116,11 @@ function StablecoinStudio() {
 
             <StepControls
                 currentStep={currentStep}
-                totalSteps={TOTAL_STEPS}
+                totalSteps={totalSteps}
                 onNext={nextStep}
                 onPrev={prevStep}
                 formData={formData}
+                validateStep={validateStep}
             />
         </div>
     );

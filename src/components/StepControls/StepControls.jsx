@@ -1,32 +1,31 @@
+import { useState } from "react";
 import "./StepControls.css";
 
-function StepControls({ currentStep, totalSteps, onNext, onPrev, formData }) {
-    const validateStep = () => {
-        // Простейшая валидация: проверка, что поля заполнены на 1 шаге
-        if (currentStep === 1) {
-            return formData.name?.trim() && formData.symbol?.trim();
-        }
-
-        // Другие шаги можно расширить по аналогии
-        return true;
-    };
+function StepControls({
+    currentStep,
+    totalSteps,
+    onNext,
+    onPrev,
+    validateStep,
+}) {
+    const [error, setError] = useState("");
 
     const handleNext = () => {
-        if (validateStep()) {
+        const validation = validateStep();
+        if (validation.state) {
             onNext();
+            setError("");
         } else {
-            alert("Please fill out required fields on this step.");
+            setError(validation.errorMessage);
         }
     };
 
     return (
         <div className="step-controls">
+            {error && <span className="step-error-message">{error}</span>}
+
             {currentStep > 1 && (
-                <button
-                    onClick={onPrev}
-                    disabled={currentStep === 1}
-                    className="step-btn secondary"
-                >
+                <button onClick={onPrev} className="step-btn secondary">
                     Previous
                 </button>
             )}
