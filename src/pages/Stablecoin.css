@@ -11,4 +11,10 @@
     margin: 75px auto 0;
     min-height: 300px;
     max-width: 418px;
+    display: flex;
+    align-items: center;
+}
+
+.step-container {
+    width: 100%;
 }

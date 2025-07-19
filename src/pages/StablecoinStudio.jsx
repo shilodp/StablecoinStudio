@@ -3,7 +3,7 @@ import StepNavigation from "@components/StepNavigation/StepNavigation.jsx";
 import StepControls from "@components/StepControls/StepControls.jsx";
 
 import General from "@components/steps/General/General.jsx";
-import Step2 from "@components/steps/Step2/Step2.jsx";
+import Pricing from "@components/steps/Pricing/Pricing.jsx";
 import Step3 from "@components/steps/Step3/Step3.jsx";
 import Step4 from "@components/steps/Step4/Step4.jsx";
 import Step5 from "@components/steps/Step5/Step5.jsx";
@@ -33,6 +33,14 @@ function StablecoinStudio() {
         decimals: "",
         decimalsRadio: "block",
         metadata: undefined,
+        basketAssets: [
+            {
+                asset: "USD",
+                weight: 100,
+                source: "OpenStable",
+                customFormula: "",
+            },
+        ],
     });
     const totalSteps = STEPS.length;
 
@@ -67,11 +75,23 @@ function StablecoinStudio() {
                     formData.stablecoinName?.trim() &&
                     formData.stablecoinSymbol?.trim() &&
                     formData.initialSupply?.trim() &&
-                    formData.decimals?.trim()
+                    formData.decimals
                 ) {
                     result.state = true;
                 } else {
-                    result.errorMessage = "Please fill in all required fields";
+                    result.errorMessage = "Please complete all required fields";
+                }
+                break;
+            case 2:
+                if (
+                    formData.basketAssets.reduce(
+                        (acc, item) => acc + +item.weight,
+                        0
+                    ) === 100
+                ) {
+                    result.state = true;
+                } else {
+                    result.errorMessage = "Total weight must be exactly 100 %";
                 }
                 break;
             default:
@@ -86,7 +106,7 @@ function StablecoinStudio() {
             case 1:
                 return <General data={formData} updateField={updateField} />;
             case 2:
-                return <Step2 data={formData} updateField={updateField} />;
+                return <Pricing data={formData} updateField={updateField} />;
             case 3:
                 return <Step3 data={formData} updateField={updateField} />;
             case 4:
