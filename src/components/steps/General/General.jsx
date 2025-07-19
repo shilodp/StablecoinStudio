@@ -87,7 +87,7 @@ function General({ data, updateField }) {
                 <DragnDropField
                     label="Metadata"
                     text="Drop .json or .yaml to upload"
-                    accept=".json,.yaml,.pdf" //ToDo: Remove .pdf
+                    accept=".json,.yaml"
                     changeHandler={(value) => {
                         updateField("metadata", value);
                     }}

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateField } from "../store/formSlice";
 import StepNavigation from "@components/StepNavigation/StepNavigation.jsx";
 import StepControls from "@components/StepControls/StepControls.jsx";
 
@@ -25,31 +27,16 @@ const STEPS = [
 ];
 
 function StablecoinStudio() {
+    const dispatch = useDispatch();
+    const formData = useSelector((state) => state.form.formData);
     const [currentStep, setCurrentStep] = useState(1);
-    const [formData, setFormData] = useState({
-        stablecoinName: "",
-        stablecoinSymbol: "",
-        initialSupply: "",
-        decimals: "",
-        decimalsRadio: "block",
-        metadata: undefined,
-        basketAssets: [
-            {
-                asset: "USD",
-                weight: 100,
-                source: "OpenStable",
-                customFormula: "",
-            },
-        ],
-    });
-    const totalSteps = STEPS.length;
 
     const goToStep = (step) => {
         if (step < currentStep) setCurrentStep(step);
     };
 
     const nextStep = () => {
-        if (currentStep < totalSteps) {
+        if (currentStep < STEPS.length) {
             setCurrentStep((prev) => prev + 1);
         }
     };
@@ -60,9 +47,10 @@ function StablecoinStudio() {
         }
     };
 
-    const updateField = (field, value) => {
-        setFormData({ ...formData, [field]: value });
+    const handleFieldChange = (key, value) => {
+        dispatch(updateField({ key, value }));
     };
+
     const validateStep = () => {
         const result = {
             state: false,
@@ -104,19 +92,33 @@ function StablecoinStudio() {
     const renderStep = () => {
         switch (currentStep) {
             case 1:
-                return <General data={formData} updateField={updateField} />;
+                return (
+                    <General data={formData} updateField={handleFieldChange} />
+                );
             case 2:
-                return <Pricing data={formData} updateField={updateField} />;
+                return (
+                    <Pricing data={formData} updateField={handleFieldChange} />
+                );
             case 3:
-                return <Step3 data={formData} updateField={updateField} />;
+                return (
+                    <Step3 data={formData} updateField={handleFieldChange} />
+                );
             case 4:
-                return <Step4 data={formData} updateField={updateField} />;
+                return (
+                    <Step4 data={formData} updateField={handleFieldChange} />
+                );
             case 5:
-                return <Step5 data={formData} updateField={updateField} />;
+                return (
+                    <Step5 data={formData} updateField={handleFieldChange} />
+                );
             case 6:
-                return <Step6 data={formData} updateField={updateField} />;
+                return (
+                    <Step6 data={formData} updateField={handleFieldChange} />
+                );
             case 7:
-                return <Step7 data={formData} updateField={updateField} />;
+                return (
+                    <Step7 data={formData} updateField={handleFieldChange} />
+                );
             case 8:
                 return <StepFinal data={formData} />;
             default:
@@ -136,7 +138,7 @@ function StablecoinStudio() {
 
             <StepControls
                 currentStep={currentStep}
-                totalSteps={totalSteps}
+                totalSteps={STEPS.length}
                 onNext={nextStep}
                 onPrev={prevStep}
                 formData={formData}
