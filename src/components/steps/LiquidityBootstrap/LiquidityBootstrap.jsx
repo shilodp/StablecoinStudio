@@ -10,7 +10,7 @@ function LiquidityBootstrap({ data, updateField }) {
             <TableField
                 label="Set exchange liquidity"
                 columns={[]} // ToDO: add JSON values
-                values={data.exchangeLiquidity || []}
+                values={data.exchangeLiquidity}
                 isRequired={true}
                 tooltip={<Tooltip />}
             />

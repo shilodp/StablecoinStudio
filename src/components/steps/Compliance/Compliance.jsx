@@ -85,8 +85,8 @@ function Compliance({ data, updateField }) {
                     <CheckboxField
                         label="Access Type"
                         optionLabel="Grant flag to creator"
-                        optionValue="grant"
-                        isChecked={!!data.grantFlagToCreator}
+                        optionValue="true"
+                        isChecked={data.grantFlagToCreator}
                         changeHandler={(value) => {
                             updateField("grantFlagToCreator", value);
                         }}
@@ -99,27 +99,27 @@ function Compliance({ data, updateField }) {
 
             <BadgeInput
                 value={
-                    data.decimalsRadio === "block"
-                        ? data.blockList || []
-                        : data.whiteList || []
+                    data.accessTypeRadio === "block"
+                        ? data.blockList
+                        : data.whiteList
                 }
                 onChange={(value) => {
                     updateField(
-                        data.decimalsRadio === "block"
+                        data.accessTypeRadio === "block"
                             ? "blockList"
                             : "whiteList",
                         value
                     );
                     updateField(
-                        data.decimalsRadio === "block"
+                        data.accessTypeRadio === "block"
                             ? "whiteList"
                             : "blockList",
-                        undefined
+                        []
                     );
                 }}
                 placeholder="Add value"
                 label={
-                    data.decimalsRadio === "block" ? "Blocklist" : "Whitelist"
+                    data.accessTypeRadio === "block" ? "Blocklist" : "Whitelist"
                 }
                 inputType="text"
             />

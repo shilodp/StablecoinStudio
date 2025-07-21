@@ -4,8 +4,8 @@ const savedForm = JSON.parse(sessionStorage.getItem("formData")) || {
     stablecoinName: "",
     stablecoinSymbol: "",
     initialSupply: "",
-    decimals: "",
-    decimalsRadio: "block",
+    decimals: "18",
+    accessTypeRadio: "block",
     metadata: undefined,
     basketAssets: [
         {
@@ -15,6 +15,35 @@ const savedForm = JSON.parse(sessionStorage.getItem("formData")) || {
             customFormula: "",
         },
     ],
+    accessType: "anyone",
+    restrictedCountries: ["Cuba", "North Korea", "Iran", "Syria Arab Republic"],
+    KYCProvider: "shuftiPro",
+    KYCFlagType: "onchain",
+    grantFlagToCreator: false,
+    blockList: [],
+    whiteList: [],
+    adminAccessControl: "single",
+    adminAddress: "",
+    exchangeLiquidity: [],
+    listOnOpenStable: false,
+    regulation: "USJurisdiction",
+    isCollateralised: false,
+    collateralisedLink: "",
+    PoRSupplyTransparency: false,
+    PoRSupplyTransparencyLink: "",
+    isYieldAvailable: false,
+    YieldDistributionMethod: "automated",
+    YieldTransparency: false,
+    YieldTransparencyLink: "",
+    UserendMinting: false,
+    KYCFlagForMint: false,
+    assetsForMint: {
+        USDT: false,
+        USDC: false,
+        BTC: false,
+        custom: false,
+    },
+    OnRampForMint: false
 };
 
 const initialState = {

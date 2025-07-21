@@ -61,11 +61,11 @@ function General({ data, updateField }) {
                     label="Blocklist"
                     type="radio"
                     isRequired={true}
-                    checked={data.decimalsRadio === "block"}
+                    checked={data.accessTypeRadio === "block"}
                     onChange={(checked, value) => {
-                        checked && updateField("decimalsRadio", value);
+                        checked && updateField("accessTypeRadio", value);
                     }}
-                    name="decimalsRadio"
+                    name="accessTypeRadio"
                     value="block"
                     tooltip={
                         <Tooltip text="Block access for specific accounts" />
@@ -75,11 +75,11 @@ function General({ data, updateField }) {
                     label="Approval list"
                     type="radio"
                     isRequired={true}
-                    checked={data.decimalsRadio === "approve"}
+                    checked={data.accessTypeRadio === "approve"}
                     onChange={(checked, value) => {
-                        checked && updateField("decimalsRadio", value);
+                        checked && updateField("accessTypeRadio", value);
                     }}
-                    name="decimalsRadio"
+                    name="accessTypeRadio"
                     value="approve"
                     tooltip={
                         <Tooltip text="Allow access only for specific accounts" />
