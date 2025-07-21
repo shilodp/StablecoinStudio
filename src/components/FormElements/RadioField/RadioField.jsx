@@ -3,8 +3,8 @@ import "./RadioField.css";
 function RadioField({
     label,
     name,
-    optionsList,
     currentValue,
+    optionsList,
     changeHandler,
     isRequired,
 }) {
