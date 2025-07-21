@@ -1,6 +1,10 @@
 .table-field {
     position: relative;
 
+    &.disabled * {
+        color: var(--color-gray-4) !important;
+    }
+
     label {
         display: block;
         font-size: 16px;

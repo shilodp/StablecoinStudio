@@ -7,7 +7,7 @@ import StepControls from "@components/StepControls/StepControls.jsx";
 import General from "@components/steps/General/General.jsx";
 import Pricing from "@components/steps/Pricing/Pricing.jsx";
 import Compliance from "@components/steps/Compliance/Compliance.jsx";
-import Step4 from "@components/steps/Step4/Step4.jsx";
+import Permissions from "@components/steps/Permissions/Permissions.jsx";
 import Step5 from "@components/steps/Step5/Step5.jsx";
 import Step6 from "@components/steps/Step6/Step6.jsx";
 import Step7 from "@components/steps/Step7/Step7.jsx";
@@ -41,7 +41,7 @@ function StablecoinStudio() {
         {
             name: "Permissions",
             component: (
-                <Step4 data={formData} updateField={handleFieldChange} />
+                <Permissions data={formData} updateField={handleFieldChange} />
             ),
         },
         {

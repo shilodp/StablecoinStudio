@@ -8,6 +8,7 @@ function CheckboxField({
     changeHandler,
     tooltip,
     isRequired,
+    isDisabled,
 }) {
     return (
         <>
@@ -17,7 +18,10 @@ function CheckboxField({
                     {isRequired && <span>*</span>}
                 </label>
             )}
-            <div key={optionValue} className="checkbox-input">
+            <div
+                key={optionValue}
+                className={`checkbox-input ${isDisabled && "disabled"}`}
+            >
                 <label>
                     <input
                         type="checkbox"
@@ -29,6 +33,7 @@ function CheckboxField({
                         }}
                         checked={isChecked}
                         required={isRequired}
+                        disabled={isDisabled}
                     />
                     <span>{optionLabel}</span>
                 </label>

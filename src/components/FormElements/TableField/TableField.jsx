@@ -13,7 +13,7 @@ function TableField({
     isRequired,
 }) {
     return (
-        <div className="table-field">
+        <div className={`table-field ${!updateCell && "disabled"}`}>
             <label>
                 {label}
                 {isRequired && <span>*</span>}
@@ -44,12 +44,14 @@ function TableField({
                                                 value={row[column.name]}
                                                 placeholder={column.placeholder}
                                                 onChange={(e) =>
+                                                    updateCell &&
                                                     updateCell(
                                                         i,
                                                         column.name,
                                                         e.target.value
                                                     )
                                                 }
+                                                disabled={!updateCell}
                                             />
                                         );
                                         break;
@@ -97,7 +99,7 @@ function TableField({
                                     </td>
                                 );
                             })}
-                            {i > 0 && (
+                            {i > 0 && removeRow && (
                                 <td className="remove-cell">
                                     <button
                                         type="remove-button"
@@ -111,12 +113,14 @@ function TableField({
                     ))}
                 </tbody>
             </table>
-            <div className="add-button">
-                <span>Add Row</span>
-                <button type="button" onClick={addRow}>
-                    +
-                </button>
-            </div>
+            {addRow && (
+                <div className="add-button">
+                    <span>Add Row</span>
+                    <button type="button" onClick={addRow}>
+                        +
+                    </button>
+                </div>
+            )}
         </div>
     );
 }

@@ -5,7 +5,15 @@ import CheckboxField from "@components/FormElements/CheckboxField/CheckboxField.
 import Tooltip from "@components/Tooltip/Tooltip.jsx";
 import "./Compliance.css";
 
-const countries = ["United States", "Germany", "France", "Japan", "Brazil"]; // ToDo: Replace with JSON
+const countries = [
+    "USA",
+    "Canada",
+    "UK",
+    "Germany",
+    "France",
+    "Japan",
+    "Brazil",
+]; // ToDo: Replace with JSON
 
 function Compliance({ data, updateField }) {
     const accessTypeOptions = [

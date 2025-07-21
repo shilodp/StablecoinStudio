@@ -22,6 +22,10 @@
         color: var(--color-blue-6);
         gap: 18px;
         cursor: pointer;
+
+        &.disabled {
+            color: var(--color-gray-4);
+        }
     }
 
     input[type="radio"] {

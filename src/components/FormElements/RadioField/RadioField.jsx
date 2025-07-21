@@ -18,7 +18,11 @@ function RadioField({
             )}
             {optionsList.map((option) => (
                 <div key={option.value} className="radio-input">
-                    <label className="radio-option">
+                    <label
+                        className={`radio-option ${
+                            option.disabled && "disabled"
+                        }`}
+                    >
                         <input
                             type="radio"
                             name={name}
@@ -28,6 +32,7 @@ function RadioField({
                             }}
                             checked={currentValue === option.value}
                             required={isRequired}
+                            disabled={option.disabled}
                         />
                         <span>{option.label}</span>
                     </label>
