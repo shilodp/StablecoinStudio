@@ -55,7 +55,7 @@ function General({ data, updateField }) {
                 />
 
                 <label className="group-label">
-                    Decimals<span>*</span>
+                    Access Type
                 </label>
                 <ToggleElement
                     label="Blocklist"

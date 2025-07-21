@@ -26,9 +26,9 @@ const links = [
     },
     { name: "Settings", icon: cog, path: "#", disabled: true },
     {
-        name: "Stablecoin Studio",
+        name: "New Stable",
         icon: instruments,
-        path: "/stablecoin",
+        path: "/newstable",
         disabled: false,
     },
 ];

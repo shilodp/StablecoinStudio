@@ -13,6 +13,10 @@ const countries = [
     "France",
     "Japan",
     "Brazil",
+    "Cuba",
+    "North Korea",
+    "Iran",
+    "Syria Arab Republic",
 ]; // ToDo: Replace with JSON
 
 function Compliance({ data, updateField }) {
@@ -96,8 +100,8 @@ function Compliance({ data, updateField }) {
             <BadgeInput
                 value={
                     data.decimalsRadio === "block"
-                        ? data.blockList
-                        : data.whiteList
+                        ? data.blockList || []
+                        : data.whiteList || []
                 }
                 onChange={(value) => {
                     updateField(

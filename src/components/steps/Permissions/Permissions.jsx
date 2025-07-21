@@ -38,8 +38,6 @@ function Permissions({ data, updateField }) {
 
             <CheckboxField
                 optionLabel="Proxy Admin"
-                optionValue="true"
-                isChecked={true}
                 isDisabled={true}
             />
 

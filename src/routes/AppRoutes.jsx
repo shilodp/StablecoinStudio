@@ -15,7 +15,7 @@ function AppRoutes() {
             }
         >
             <Route
-                path="/stablecoin"
+                path="/newstable"
                 element={
                     <PrivateRoute>
                         <StablecoinStudio />

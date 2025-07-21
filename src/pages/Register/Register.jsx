@@ -95,7 +95,7 @@ function Register() {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     if (isAuthenticated) {
-        return <Navigate to="/" replace />;
+        return <Navigate to="/newstable" replace />;
     }
 
     const [form, setForm] = useState({
@@ -120,7 +120,7 @@ function Register() {
                 email: form.email,
             })
         );
-        navigate("/");
+        navigate("/newstable");
     };
 
     return (

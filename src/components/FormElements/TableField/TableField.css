@@ -111,7 +111,7 @@
 
     .add-button {
         position: absolute;
-        bottom: 0;
+        bottom: 8px;
         right: calc(100% + 8px);
         display: flex;
         gap: 10px;

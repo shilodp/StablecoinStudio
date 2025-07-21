@@ -5,7 +5,7 @@ import "./BadgeInput.css";
 
 function BadgeInput({
     value = [],
-    locked,
+    locked = [],
     onChange,
     label,
     placeholder,

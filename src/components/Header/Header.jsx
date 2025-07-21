@@ -11,7 +11,7 @@ function Header() {
                 </Link>
             </div>
             <div className="header-right">
-                <div className="site-name">Stablecoin Studio</div>
+                <div className="site-name">New Stable</div>
                 <input
                     className="search-input"
                     title="Coming soon"

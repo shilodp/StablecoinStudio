@@ -10,7 +10,7 @@ import Compliance from "@components/steps/Compliance/Compliance.jsx";
 import Permissions from "@components/steps/Permissions/Permissions.jsx";
 import LiquidityBootstrap from "@components/steps/LiquidityBootstrap/LiquidityBootstrap.jsx";
 import ReservesYield from "@components/steps/ReservesYield/ReservesYield.jsx";
-import Step7 from "@components/steps/Step7/Step7.jsx";
+import Minting from "@components/steps/Minting/Minting.jsx";
 import StepFinal from "@components/steps/Step8/StepFinal.jsx";
 import "./Stablecoin.css";
 
@@ -62,7 +62,7 @@ function StablecoinStudio() {
         {
             name: "Minting",
             component: (
-                <Step7 data={formData} updateField={handleFieldChange} />
+                <Minting data={formData} updateField={handleFieldChange} />
             ),
         },
         {
