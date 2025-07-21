@@ -11,12 +11,14 @@ function TableField({
     addRow,
     removeRow,
     isRequired,
+    tooltip,
 }) {
     return (
         <div className={`table-field ${!updateCell && "disabled"}`}>
-            <label>
+            <label className="table-label">
                 {label}
                 {isRequired && <span>*</span>}
+                {tooltip}
             </label>
             <table>
                 <thead>

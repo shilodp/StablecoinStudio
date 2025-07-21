@@ -1,11 +1,12 @@
 .table-field {
     position: relative;
 
-    &.disabled * {
+    &.disabled *,
+    &.disabled ::placeholder {
         color: var(--color-gray-4) !important;
     }
 
-    label {
+    .table-label {
         display: block;
         font-size: 16px;
         color: var(--color-black);

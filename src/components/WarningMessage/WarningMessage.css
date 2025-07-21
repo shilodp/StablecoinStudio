@@ -1,0 +1,21 @@
+.warning-message {
+    display: flex;
+    align-items: center;
+    gap: 21px;
+    padding: 25px 35px 25px 25px;
+    border: 1px solid var(--color-gray-7);
+    background-color: var(--color-blue-7);
+    color: var(--color-black);
+    border-radius: 6px;
+    font-size: 16px;
+    margin-bottom: 21px;
+}
+
+.warning-icon {
+    width: 23px;
+    height: 23px;
+}
+
+.warning-text {
+    flex: 1;
+}
