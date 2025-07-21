@@ -1,0 +1,31 @@
+.checkbox-label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 22px;
+
+    & + .checkbox-input {
+        margin-bottom: 40px;
+    }
+}
+
+.checkbox-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+
+    label {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        gap: 12px;
+        cursor: pointer;
+
+        input[type="checkbox"] {
+            accent-color: var(--color-blue-6);
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+    }
+}

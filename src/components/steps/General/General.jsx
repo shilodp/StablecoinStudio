@@ -67,9 +67,10 @@ function General({ data, updateField }) {
                     }}
                     name="decimalsRadio"
                     value="block"
-                >
-                    <Tooltip text="Block access for specific accounts" />
-                </ToggleElement>
+                    tooltip={
+                        <Tooltip text="Block access for specific accounts" />
+                    }
+                />
                 <ToggleElement
                     label="Approval list"
                     type="radio"
@@ -80,9 +81,10 @@ function General({ data, updateField }) {
                     }}
                     name="decimalsRadio"
                     value="approve"
-                >
-                    <Tooltip text="Allow access only for specific accounts" />
-                </ToggleElement>
+                    tooltip={
+                        <Tooltip text="Allow access only for specific accounts" />
+                    }
+                />
 
                 <DragnDropField
                     label="Metadata"

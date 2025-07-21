@@ -6,52 +6,91 @@ import StepControls from "@components/StepControls/StepControls.jsx";
 
 import General from "@components/steps/General/General.jsx";
 import Pricing from "@components/steps/Pricing/Pricing.jsx";
-import Step3 from "@components/steps/Step3/Step3.jsx";
+import Compliance from "@components/steps/Compliance/Compliance.jsx";
 import Step4 from "@components/steps/Step4/Step4.jsx";
 import Step5 from "@components/steps/Step5/Step5.jsx";
 import Step6 from "@components/steps/Step6/Step6.jsx";
 import Step7 from "@components/steps/Step7/Step7.jsx";
 import StepFinal from "@components/steps/Step8/StepFinal.jsx";
-
 import "./Stablecoin.css";
-
-const STEPS = [
-    { name: "General" },
-    { name: "Pricing" },
-    { name: "Compliance" },
-    { name: "Permissions" },
-    { name: "Liquidity Bootstrap" },
-    { name: "Reserves + Yield" },
-    { name: "Minting" },
-    { name: "Summary" },
-];
 
 function StablecoinStudio() {
     const dispatch = useDispatch();
     const formData = useSelector((state) => state.form.formData);
     const [currentStep, setCurrentStep] = useState(1);
 
-    const goToStep = (step) => {
-        if (step < currentStep) setCurrentStep(step);
-    };
+    const STEPS = [
+        {
+            name: "General",
+            component: (
+                <General data={formData} updateField={handleFieldChange} />
+            ),
+        },
+        {
+            name: "Pricing",
+            component: (
+                <Pricing data={formData} updateField={handleFieldChange} />
+            ),
+        },
+        {
+            name: "Compliance",
+            component: (
+                <Compliance data={formData} updateField={handleFieldChange} />
+            ),
+        },
+        {
+            name: "Permissions",
+            component: (
+                <Step4 data={formData} updateField={handleFieldChange} />
+            ),
+        },
+        {
+            name: "Liquidity Bootrstap",
+            component: (
+                <Step5 data={formData} updateField={handleFieldChange} />
+            ),
+        },
+        {
+            name: "Reserves + Yield",
+            component: (
+                <Step6 data={formData} updateField={handleFieldChange} />
+            ),
+        },
+        {
+            name: "Minting",
+            component: (
+                <Step7 data={formData} updateField={handleFieldChange} />
+            ),
+        },
+        {
+            name: "Summary",
+            component: (
+                <StepFinal data={formData} updateField={handleFieldChange} />
+            ),
+        },
+    ];
 
-    const nextStep = () => {
+    function goToStep(step) {
+        if (step < currentStep) setCurrentStep(step);
+    }
+
+    function nextStep() {
         if (currentStep < STEPS.length) {
             setCurrentStep((prev) => prev + 1);
         }
-    };
+    }
 
-    const prevStep = () => {
+    function prevStep() {
         if (currentStep > 1) {
             setCurrentStep((prev) => prev - 1);
         }
-    };
+    }
 
-    const handleFieldChange = (key, value) => {
+    function handleFieldChange(key, value) {
         dispatch(updateField({ key, value }));
-    };
+    }
 
-    const validateStep = () => {
+    function validateStep() {
         const result = {
             state: false,
             errorMessage: "",
@@ -87,44 +126,11 @@ function StablecoinStudio() {
         }
 
         return result;
-    };
+    }
 
-    const renderStep = () => {
-        switch (currentStep) {
-            case 1:
-                return (
-                    <General data={formData} updateField={handleFieldChange} />
-                );
-            case 2:
-                return (
-                    <Pricing data={formData} updateField={handleFieldChange} />
-                );
-            case 3:
-                return (
-                    <Step3 data={formData} updateField={handleFieldChange} />
-                );
-            case 4:
-                return (
-                    <Step4 data={formData} updateField={handleFieldChange} />
-                );
-            case 5:
-                return (
-                    <Step5 data={formData} updateField={handleFieldChange} />
-                );
-            case 6:
-                return (
-                    <Step6 data={formData} updateField={handleFieldChange} />
-                );
-            case 7:
-                return (
-                    <Step7 data={formData} updateField={handleFieldChange} />
-                );
-            case 8:
-                return <StepFinal data={formData} />;
-            default:
-                return null;
-        }
-    };
+    function renderStep() {
+        return STEPS[currentStep - 1].component;
+    }
 
     return (
         <div className="stablecoin-container">

@@ -8,7 +8,7 @@ function ToggleElement({
     name,
     value,
     isRequired,
-    children,
+    tooltip,
 }) {
     return (
         <div className="toggle-field">
@@ -29,7 +29,7 @@ function ToggleElement({
                 </div>
                 <span className="toggle-label">{label}</span>
             </label>
-            {children}
+            {tooltip}
         </div>
     );
 }
