@@ -6,6 +6,7 @@ function TextField({
     changeHandler,
     isRequired,
     usePasteButton,
+    placeholder = "Type here...",
 }) {
     const handlePasteClick = async () => {
         try {
@@ -22,7 +23,7 @@ function TextField({
                 {isRequired && <span>*</span>}
                 <input
                     type="text"
-                    placeholder="Type here..."
+                    placeholder={placeholder}
                     value={value}
                     onChange={(e) => {
                         changeHandler(e.target.value);

@@ -47,6 +47,7 @@ function ReservesYield({ data, updateField }) {
                     changeHandler={(value) => {
                         updateField("collateralisedLink", value);
                     }}
+                    placeholder="Paste Link"
                     usePasteButton={true}
                 />
             )}
@@ -68,6 +69,7 @@ function ReservesYield({ data, updateField }) {
                     changeHandler={(value) => {
                         updateField("PoRSupplyTransparencyLink", value);
                     }}
+                    placeholder="Paste Link"
                     usePasteButton={true}
                 />
             )}
@@ -127,6 +129,7 @@ function ReservesYield({ data, updateField }) {
                             changeHandler={(value) => {
                                 updateField("YieldTransparencyLink", value);
                             }}
+                            placeholder="Paste Link"
                             usePasteButton={true}
                         />
                     )}

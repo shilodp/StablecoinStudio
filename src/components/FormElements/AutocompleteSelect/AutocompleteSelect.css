@@ -1,6 +1,15 @@
 .autocomplete-select {
     position: relative;
     width: 100%;
+
+    &.embeded {
+        position: static;
+
+        .autocomplete-input {
+            border: none;
+            outline: none;
+        }
+    }
 }
 
 .autocomplete-input {

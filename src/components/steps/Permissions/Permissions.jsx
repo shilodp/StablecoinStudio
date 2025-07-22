@@ -36,10 +36,7 @@ function Permissions({ data, updateField }) {
                 usePasteButton={true}
             />
 
-            <CheckboxField
-                optionLabel="Proxy Admin"
-                isDisabled={true}
-            />
+            <CheckboxField optionLabel="Proxy Admin" isDisabled={true} />
 
             <TableField
                 label="Roles"
@@ -76,6 +73,7 @@ function Permissions({ data, updateField }) {
                                 disabled: true,
                             },
                         ],
+                        unique: true,
                     },
                     {
                         name: "address",

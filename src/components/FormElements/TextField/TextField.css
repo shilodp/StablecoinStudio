@@ -27,6 +27,7 @@
         background: none;
         border: none;
         background-image: url(@assets/paste.svg);
+        background-repeat: no-repeat;
         width: 15px;
         height: 17px;
         position: absolute;

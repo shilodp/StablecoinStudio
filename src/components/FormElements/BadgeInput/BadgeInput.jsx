@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AutocompleteSelect from "@components/FormElements/AutocompleteSelect/AutocompleteSelect.jsx";
 import DropDownField from "@components/FormElements/DropDownField/DropDownField.jsx";
+import TextField from "@components/FormElements/TextField/TextField.jsx";
 import "./BadgeInput.css";
 
 function BadgeInput({
@@ -15,7 +16,6 @@ function BadgeInput({
     dropdownOptions,
     autoCompleteOptions,
 }) {
-    const [inputShown, setInputShown] = useState(false);
     const [inputValue, setInputValue] = useState("");
 
     const handleAdd = () => {
@@ -23,7 +23,6 @@ function BadgeInput({
         if (trimmed && !value.includes(trimmed)) {
             onChange([...value, trimmed]);
             setInputValue("");
-            setInputShown(false);
         }
     };
 
@@ -50,7 +49,6 @@ function BadgeInput({
                     )}
                     changeHandler={(newValue) => {
                         onChange([...value, newValue]);
-                        setInputShown(false);
                     }}
                 />
             );
@@ -64,8 +62,8 @@ function BadgeInput({
                     placeholder={placeholder}
                     onChange={(newValue) => {
                         onChange([...value, newValue]);
-                        setInputShown(false);
                     }}
+                    isEmbeded={true}
                 />
             );
             break;
@@ -73,15 +71,12 @@ function BadgeInput({
         default:
             inputElem = (
                 <>
-                    <input
-                        type="text"
-                        className="badge-input"
+                    <TextField
                         value={inputValue}
+                        changeHandler={setInputValue}
+                        usePasteButton={true}
                         placeholder={placeholder}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        onKeyDown={handleKeyDown}
                     />
-                    <button onClick={handleAdd}>Add</button>
                 </>
             );
     }
@@ -112,19 +107,16 @@ function BadgeInput({
                         )}
                     </span>
                 ))}
+                <div className="input-wrapper">{inputElem}</div>
             </div>
-            <div className="add-button">
-                <span>Add Item</span>
-                <button
-                    type="button"
-                    onClick={() => {
-                        setInputShown(true);
-                    }}
-                >
-                    +
-                </button>
-            </div>
-            {inputShown && <div className="input-wrapper">{inputElem}</div>}
+            {(inputType === "text" || !inputType) && (
+                <div className="add-button">
+                    <span>Add Item</span>
+                    <button type="button" onClick={handleAdd}>
+                        +
+                    </button>
+                </div>
+            )}
         </div>
     );
 }

@@ -13,6 +13,10 @@ function TableField({
     isRequired,
     tooltip,
 }) {
+    const uniqueValuesLength = columns.filter((column) =>
+        column.hasOwnProperty("unique")
+    )[0]?.options?.length;
+
     return (
         <div className={`table-field ${!updateCell && "disabled"}`}>
             <label className="table-label">
@@ -90,6 +94,11 @@ function TableField({
                                                         value
                                                     );
                                                 }}
+                                                isUnique={column.unique}
+                                                currentValues={values.map(
+                                                    (value) =>
+                                                        value[column.name]
+                                                )}
                                             />
                                         );
                                         break;
@@ -115,7 +124,7 @@ function TableField({
                     ))}
                 </tbody>
             </table>
-            {addRow && (
+            {addRow && uniqueValuesLength !== values.length && (
                 <div className="add-button">
                     <span>Add Row</span>
                     <button type="button" onClick={addRow}>

@@ -45,6 +45,7 @@ function Pricing({ data, updateField }) {
                     disabled: false,
                 },
             ],
+            unique: true,
         },
         {
             name: "weight",
@@ -69,6 +70,11 @@ function Pricing({ data, updateField }) {
                 {
                     value: "OpenStable",
                     label: "OpenStable",
+                    disabled: false,
+                },
+                {
+                    value: "Chainlink",
+                    label: "Chainlink",
                     disabled: false,
                 },
                 {
