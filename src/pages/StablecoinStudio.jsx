@@ -22,6 +22,7 @@ const modalsRoot = document.getElementById("modals-root");
 function StablecoinStudio() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const userData = useSelector((state) => state.auth.user);
     const formData = useSelector((state) => state.form.formData);
     const [currentStep, setCurrentStep] = useState(1);
     const [currenciesCources, setCurrenciesCources] = useState({});
@@ -115,7 +116,6 @@ function StablecoinStudio() {
         } else {
             setShowFirstDisclamer(true);
         }
-        sendDataToServer();
     }
 
     function prevStep() {
@@ -177,8 +177,23 @@ function StablecoinStudio() {
         return STEPS[currentStep - 1].component;
     }
 
-    function sendDataToServer(finished = false) {
+    async function sendDataToServer() {
         // ToDo: send data
+        const data = {
+            name: userData.name,
+            email: userData.email,
+            message: formData,
+        };
+        const response = await fetch(
+            "https://script.google.com/macros/s/AKfycbxncSWITOBT7FR-0iu1NwIrwHXIVZPrAcYp14AZXRY7IQiZo6YQ03c9qQF5r89IejDq/exec",
+            {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
     }
 
     return (
@@ -311,7 +326,7 @@ function StablecoinStudio() {
                                     className="button"
                                     onClick={() => {
                                         setShowSecondDisclamer(false);
-                                        sendDataToServer(true);
+                                        sendDataToServer();
                                         setShowDonePopup(true);
                                     }}
                                 >
