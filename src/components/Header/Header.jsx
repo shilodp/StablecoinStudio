@@ -1,8 +1,10 @@
-import logo from "@assets/icon.svg";
+import logo from "@assets/icons/logo.svg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./Header.css";
 
 function Header() {
+    const isAuth = useSelector((state) => state.auth.isAuthenticated);
     return (
         <header className="header">
             <div className="header-left">
@@ -11,7 +13,7 @@ function Header() {
                 </Link>
             </div>
             <div className="header-right">
-                <div className="site-name">New Stable</div>
+                {isAuth && <div className="site-name">New Stable</div>}
                 <input
                     className="search-input"
                     title="Coming soon"

@@ -16,8 +16,8 @@
 .popup {
     background-color: #fff;
     border-radius: 12px;
-    width: 90%;
-    max-width: 500px;
+    width: 80%;
+    max-width: 600px;
     max-height: 90vh; /* ограничение по высоте окна */
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     display: flex;
@@ -42,7 +42,7 @@
 
 /* Прокручиваемое тело */
 .popup-body {
-    padding: 20px 24px;
+    padding: 20px 24px 50px;
     font-size: 16px;
     color: #4a5568;
     overflow-y: auto;

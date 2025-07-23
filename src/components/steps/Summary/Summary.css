@@ -1,0 +1,13 @@
+.summary-step {
+    .table-field.disabled {
+        margin: 30px 0 25px;
+
+        th {
+            color: var(--color-black) !important;
+        }
+
+        input {
+            color: var(--color-blue-3) !important;
+        }
+    }
+}

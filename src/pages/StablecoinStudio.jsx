@@ -11,7 +11,7 @@ import Permissions from "@components/steps/Permissions/Permissions.jsx";
 import LiquidityBootstrap from "@components/steps/LiquidityBootstrap/LiquidityBootstrap.jsx";
 import ReservesYield from "@components/steps/ReservesYield/ReservesYield.jsx";
 import Minting from "@components/steps/Minting/Minting.jsx";
-import StepFinal from "@components/steps/Step8/StepFinal.jsx";
+import Summary from "@components/steps/Summary/Summary.jsx";
 import "./Stablecoin.css";
 
 function StablecoinStudio() {
@@ -68,7 +68,7 @@ function StablecoinStudio() {
         {
             name: "Summary",
             component: (
-                <StepFinal data={formData} updateField={handleFieldChange} />
+                <Summary data={formData} updateField={handleFieldChange} />
             ),
         },
     ];

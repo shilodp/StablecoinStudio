@@ -3,39 +3,38 @@ import BadgeInput from "@components/FormElements/BadgeInput/BadgeInput.jsx";
 import DropDownField from "@components/FormElements/DropDownField/DropDownField.jsx";
 import CheckboxField from "@components/FormElements/CheckboxField/CheckboxField.jsx";
 import Tooltip from "@components/Tooltip/Tooltip.jsx";
+import countries from "@assets/json/countries.json";
 import "./Compliance.css";
 
-const countries = [
-    "USA",
-    "Canada",
-    "UK",
-    "Germany",
-    "France",
-    "Japan",
-    "Brazil",
-    "Cuba",
-    "North Korea",
-    "Iran",
-    "Syria Arab Republic",
-]; // ToDo: Replace with JSON
-
 function Compliance({ data, updateField }) {
+    const lockedCountries = [
+        "Cuba",
+        "North Korea",
+        "Iran",
+        "Syria Arab Republic",
+    ];
     const accessTypeOptions = [
         { value: "anyone", label: "Open to anyone" },
         { value: "restricted", label: "Gated / Restricted (KYC required)" },
     ];
     const KYCProviderOptions = [
-        { value: "shuftiPro", label: "Shufti Pro", disabled: false },
-        { value: "citizenship", label: "Citizenship", disabled: false },
+        { value: "Shufti Pro", label: "Shufti Pro", disabled: false },
+        { value: "Citizenship", label: "Citizenship", disabled: false },
         { value: "Accredited", label: "Accredited", disabled: false },
         { value: "custom", label: "Custom", disabled: true },
     ];
     const KYCFlagTypeOptions = [
-        { value: "onchain", label: "Onchain", disabled: false },
-        { value: "offchain", label: "Offchain", disabled: false },
+        { value: "Onchain", label: "Onchain", disabled: false },
+        { value: "Offchain", label: "Offchain", disabled: false },
     ];
+
     return (
-        <div className="step-container">
+        <div className="step-container step-compliance">
+            <h3 className="step-title">KYC & Blocks</h3>
+            <p className="step-subtitle">
+                Define access policy, KYC provider and flag behavior.
+            </p>
+
             <RadioField
                 label="Access Type"
                 name="accessType"
@@ -49,7 +48,7 @@ function Compliance({ data, updateField }) {
 
             <BadgeInput
                 value={data.restrictedCountries}
-                locked={["Cuba", "North Korea", "Iran", "Syria Arab Republic"]}
+                locked={lockedCountries}
                 onChange={(value) => {
                     updateField("restrictedCountries", value);
                 }}
@@ -83,7 +82,7 @@ function Compliance({ data, updateField }) {
                         isRequired={true}
                     />
                     <CheckboxField
-                        label="Access Type"
+                        label="Creator KYC Flag"
                         optionLabel="Grant flag to creator"
                         optionValue="true"
                         isChecked={data.grantFlagToCreator}
@@ -122,6 +121,7 @@ function Compliance({ data, updateField }) {
                     data.accessTypeRadio === "block" ? "Blocklist" : "Whitelist"
                 }
                 inputType="text"
+                usePasteButton={true}
             />
         </div>
     );

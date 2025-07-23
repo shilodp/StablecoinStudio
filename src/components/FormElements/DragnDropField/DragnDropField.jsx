@@ -2,12 +2,12 @@ import { useState, useRef } from "react";
 import "./DragnDropField.css";
 
 function DragnDropField({
-    label,
-    text,
-    accept,
+    label = "",
+    text = "",
+    accept = "*",
     changeHandler,
-    isMultiple,
-    isRequired,
+    isMultiple = false,
+    isRequired = false,
 }) {
     const [dragOver, setDragOver] = useState(false);
     const [fileNames, setFileNames] = useState("");

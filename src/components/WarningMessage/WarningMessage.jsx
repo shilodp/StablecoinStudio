@@ -1,4 +1,4 @@
-import warningIcon from "@assets/warning.svg";
+import warningIcon from "@assets/icons/warning.svg";
 import "./WarningMessage.css";
 
 function WarningMessage({ text }) {

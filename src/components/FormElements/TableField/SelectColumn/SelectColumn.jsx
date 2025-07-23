@@ -1,9 +1,9 @@
 function SelectColumn({
-    value,
+    value = "",
     changeHandler,
-    options,
-    isUnique,
-    currentValues,
+    options = [],
+    isUnique = false,
+    currentValues = [],
 }) {
     const valuesToShow = isUnique
         ? options.filter(

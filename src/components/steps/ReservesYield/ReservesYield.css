@@ -1,21 +1,10 @@
-.step6-container {
-    max-width: 400px;
-}
+.reserves-yield-step {
+    .step-title:not(:first-child) {
+        margin: 25px 0;
+    }
 
-.step6-container h2 {
-    margin-bottom: 20px;
-    color: #2b6cb0;
-}
-
-.step6-container select {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-}
-
-.step6-container select option:disabled {
-    color: #999;
+    .toggle-field-title,
+    .radio-group {
+        margin-top: 35px;
+    }
 }

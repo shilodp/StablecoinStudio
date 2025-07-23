@@ -1,9 +1,8 @@
 .badge-input-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 8px;
     position: relative;
-    margin-bottom: 40px;
+    margin: 40px 0;
 
     .badge-label {
         display: block;
@@ -47,7 +46,7 @@
         display: block;
         width: 16px;
         height: 16px;
-        background-image: url(@assets/cross.svg);
+        background-image: url(@assets/icons/cross-white.svg);
         background-repeat: no-repeat;
         background-size: 12px 12px;
         background-position: center center;

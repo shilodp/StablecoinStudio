@@ -1,7 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./AutocompleteSelect.css";
 
-function AutocompleteSelect({ options, onChange, placeholder, isEmbeded }) {
+function AutocompleteSelect({
+    options = [],
+    onChange,
+    placeholder = "",
+    isEmbeded = false,
+}) {
     const [inputValue, setInputValue] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const ref = useRef();
@@ -31,7 +36,10 @@ function AutocompleteSelect({ options, onChange, placeholder, isEmbeded }) {
     });
 
     return (
-        <div className={`autocomplete-select ${isEmbeded && 'embeded'}`} ref={ref}>
+        <div
+            className={`autocomplete-select ${isEmbeded && "embeded"}`}
+            ref={ref}
+        >
             <input
                 type="text"
                 value={inputValue}

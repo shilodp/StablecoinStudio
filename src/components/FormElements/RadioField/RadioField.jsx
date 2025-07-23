@@ -1,12 +1,12 @@
 import "./RadioField.css";
 
 function RadioField({
-    label,
-    name,
-    currentValue,
-    optionsList,
+    label = "",
+    name = "",
+    currentValue = "",
+    optionsList = [],
     changeHandler,
-    isRequired,
+    isRequired = false,
 }) {
     return (
         <fieldset className="radio-group">

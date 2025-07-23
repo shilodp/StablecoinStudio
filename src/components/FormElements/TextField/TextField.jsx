@@ -1,11 +1,12 @@
 import "./TextField.css";
 
 function TextField({
-    label,
-    value,
+    label = "",
+    value = "",
     changeHandler,
-    isRequired,
-    usePasteButton,
+    isRequired = false,
+    usePasteButton = false,
+    isDisabled = false,
     placeholder = "Type here...",
 }) {
     const handlePasteClick = async () => {
@@ -17,10 +18,10 @@ function TextField({
         }
     };
     return (
-        <div className="text-input">
+        <div className={`text-input ${isDisabled && "disabled"}`}>
             <label>
                 {label}
-                {isRequired && <span>*</span>}
+                {label && isRequired && <span>*</span>}
                 <input
                     type="text"
                     placeholder={placeholder}

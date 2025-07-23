@@ -1,14 +1,14 @@
 import "./CheckboxField.css";
 
 function CheckboxField({
-    label,
-    optionLabel,
-    optionValue,
-    isChecked,
+    label = "",
+    optionLabel = "",
+    optionValue = null,
+    isChecked = false,
     changeHandler,
     tooltip,
-    isRequired,
-    isDisabled,
+    isRequired = false,
+    isDisabled = false,
 }) {
     return (
         <>

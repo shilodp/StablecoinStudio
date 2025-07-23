@@ -1,20 +1,27 @@
 import "./ToggleElement.css";
 
 function ToggleElement({
-    title,
-    label,
+    title = "",
+    label = "",
     type = "checkbox",
-    checked,
+    checked = false,
     onChange,
-    name,
-    value,
-    isRequired,
+    name = "",
+    value = "",
+    isRequired = false,
     tooltip,
+    isDisabled = false,
 }) {
     return (
         <>
-            {title && (<label className="toggle-field-title">{title}</label>)}
-            <div className="toggle-field">
+            {title && (
+                <label
+                    className={`toggle-field-title ${isDisabled && "disabled"}`}
+                >
+                    {title}
+                </label>
+            )}
+            <div className={`toggle-field ${isDisabled && "disabled"}`}>
                 <label className="toggle-label">
                     <input
                         type={type}
@@ -26,6 +33,7 @@ function ToggleElement({
                         value={value}
                         className="toggle-input"
                         required={isRequired}
+                        disabled={isDisabled}
                     />
                     <div className={`toggle-ui ${checked ? "on" : "off"}`}>
                         <div className="toggle-circle" />

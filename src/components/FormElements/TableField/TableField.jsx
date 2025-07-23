@@ -1,16 +1,16 @@
 import InputColumn from "./InputColumn/InputColumn.jsx";
 import SelectColumn from "./SelectColumn/SelectColumn.jsx";
-import crossIcon from "@assets/cross.svg";
+import crossIcon from "@assets/icons/cross.svg";
 import "./TableField.css";
 
 function TableField({
-    label,
-    columns,
-    values,
+    label = "",
+    columns = [],
+    values = [],
     updateCell,
     addRow,
     removeRow,
-    isRequired,
+    isRequired = false,
     tooltip,
 }) {
     const uniqueValuesLength = columns.filter((column) =>

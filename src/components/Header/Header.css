@@ -41,7 +41,7 @@
     border: none;
     border-radius: 25px;
     background-color: var(--color-gray-3);
-    background-image: url(@assets/search.svg);
+    background-image: url(@assets/icons/search.svg);
     background-repeat: no-repeat;
     background-position: 26px center;
     color: var(--color-blue-4);

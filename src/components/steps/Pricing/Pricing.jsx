@@ -105,12 +105,13 @@ function Pricing({ data, updateField }) {
         updateField("basketAssets", newRows);
     };
 
-    const customFields = data.basketAssets.filter(
-        (row) => row.source === "custom"
-    );
-
     return (
         <div className="step-container step-pricing">
+            <h2 className="step-title">Reference Basket & Feeds</h2>
+            <p className="step-subtitle">
+                Choose basket assets, set weights, connect price feeds.
+            </p>
+
             <TableField
                 label="Basket Assets"
                 isRequired={true}
@@ -122,19 +123,22 @@ function Pricing({ data, updateField }) {
             />
 
             <p className="hint">Total weight must be exactly 100 %</p>
-            {customFields.map((row) => (
-                <TextField
-                    label={row.asset + " Custom Formula (Optional)"}
-                    value={row.customValue}
-                    changeHandler={(value) => {
-                        const index = data.basketAssets.findIndex(
-                            (item) => (item.asset = row.asset)
-                        );
-                        updateCell(index, "customFormula", value);
-                    }}
-                    isRequired={false}
-                />
-            ))}
+            {data.basketAssets
+                .filter((row) => row.source === "custom")
+                .map((row) => (
+                    <TextField
+                        key={row.asset}
+                        label={row.asset + " Custom Formula (Optional)"}
+                        value={row.customFormula}
+                        changeHandler={(value) => {
+                            const index = data.basketAssets.findIndex(
+                                (item) => item.asset === row.asset
+                            );
+                            updateCell(index, "customFormula", value);
+                        }}
+                        isRequired={false}
+                    />
+                ))}
         </div>
     );
 }

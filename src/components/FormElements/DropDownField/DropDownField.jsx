@@ -1,11 +1,19 @@
 import "./DropDownField.css";
 
-function DropDownField({ label, value, options, changeHandler, isRequired }) {
+function DropDownField({
+    label = "",
+    value = "",
+    options = [],
+    changeHandler,
+    isRequired = false,
+    tooltip,
+}) {
     return (
         <div className="dropdown-field">
             <label>
                 {label}
                 {isRequired && <span>*</span>}
+                {tooltip}
                 <select
                     value={value}
                     onChange={(e) => changeHandler(e.target.value)}

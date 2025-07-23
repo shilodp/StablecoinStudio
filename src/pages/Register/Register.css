@@ -77,3 +77,29 @@
     margin-top: 11px;
     margin-bottom: 0;
 }
+
+.popup-text {
+    ul {
+        padding-left: 10px;
+        list-style: "-";
+    }
+
+    ol {
+        padding-left: 20px;
+    }
+
+    li:not(:last-child) {
+        margin-bottom: 10px;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+
+        th,
+        td {
+            border: 1px solid var(--color-gray-7);
+            padding: 8px;
+        }
+    }
+}

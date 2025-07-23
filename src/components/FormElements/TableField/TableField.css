@@ -80,7 +80,7 @@
 
         select {
             cursor: pointer;
-            background-image: url(@assets/arrow-down.svg);
+            background-image: url(@assets/icons/arrow-down.svg);
             background-repeat: no-repeat;
             background-position: calc(100% - 13px) center;
             background-size: 7px 5px;

@@ -1,10 +1,10 @@
-import coins from "@assets/coins.svg";
-import users from "@assets/users.svg";
-import fingerprint from "@assets/fingerprint.svg";
-import pricetag from "@assets/pricetag.svg";
-import document from "@assets/document.svg";
-import cog from "@assets/cog.svg";
-import instruments from "@assets/instruments.svg";
+import coins from "@assets/icons/coins.svg";
+import users from "@assets/icons/users.svg";
+import fingerprint from "@assets/icons/fingerprint.svg";
+import pricetag from "@assets/icons/pricetag.svg";
+import document from "@assets/icons/document.svg";
+import cog from "@assets/icons/cog.svg";
+import instruments from "@assets/icons/instruments.svg";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 
@@ -45,7 +45,9 @@ function Sidebar() {
                                     className="nav-item disabled"
                                     title="Coming soon"
                                 >
-                                    <img className="icon" src={link.icon} />
+                                    <span className="icon">
+                                        <img src={link.icon} />
+                                    </span>
                                     {link.name}
                                 </div>
                             ) : (
@@ -55,7 +57,9 @@ function Sidebar() {
                                         "nav-item" + (isActive ? " active" : "")
                                     }
                                 >
-                                    <img className="icon" src={link.icon} />
+                                    <span className="icon">
+                                        <img src={link.icon} />
+                                    </span>
                                     {link.name}
                                 </NavLink>
                             )}

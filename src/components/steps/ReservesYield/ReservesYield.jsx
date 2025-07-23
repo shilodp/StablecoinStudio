@@ -2,14 +2,20 @@ import DropDownField from "@components/FormElements/DropDownField/DropDownField"
 import WarningMessage from "@components/WarningMessage/WarningMessage";
 import ToggleElement from "@components/FormElements/ToggleElement/ToggleElement";
 import TextField from "@components/FormElements/TextField/TextField";
+import UrlField from "@components/FormElements/UrlField/UrlField";
 import RadioField from "@components/FormElements/RadioField/RadioField";
+import Tooltip from "@components/Tooltip/Tooltip";
 
 import "./ReservesYield.css";
 
 function ReservesYield({ data, updateField }) {
     return (
-        <div className="step-container">
-            <h2>Reserves</h2>
+        <div className="step-container reserves-yield-step">
+            <h2 className="step-title">Backing & Distribution</h2>
+            <p className="step-subtitle">
+                Specify jurisdiction, show collateral proof, configure yield
+                accrual/payout.
+            </p>
 
             <DropDownField
                 label="Regulation"
@@ -17,18 +23,24 @@ function ReservesYield({ data, updateField }) {
                 options={[
                     {
                         label: "United States jurisdiction",
-                        value: "USJurisdiction",
+                        value: "United States jurisdiction",
                     },
                 ]}
                 changeHandler={(value) => {
                     updateField("USJurisdiction", value);
                 }}
                 isRequired={true}
+                tooltip={
+                    <Tooltip text="The jurisdiction of the digital security. New jurisdiction could be supported in the future."></Tooltip>
+                }
             />
 
             <WarningMessage text="Important: Consult your legal and financial advisor to ensure the selected jurisdiction and rules are compliant. These details cannot be changed after launch" />
 
-            <h3>Proof-of-Reserve</h3>
+            <h3 className="step-title">
+                Proof-of-Reserve
+                <Tooltip text="Public, verifiable proof of the collateral backing your stablecoin. Enabling Transparency will require a link (on‑chain address, Merkle/MPT tree, auditor report, etc.)"></Tooltip>
+            </h3>
 
             <ToggleElement
                 title="Will your stablecoin be collateralised by another on-chain asset?"
@@ -42,7 +54,7 @@ function ReservesYield({ data, updateField }) {
             />
 
             {data.isCollateralised && (
-                <TextField
+                <UrlField
                     value={data.collateralisedLink}
                     changeHandler={(value) => {
                         updateField("collateralisedLink", value);
@@ -64,7 +76,7 @@ function ReservesYield({ data, updateField }) {
             />
 
             {data.PoRSupplyTransparency && (
-                <TextField
+                <UrlField
                     value={data.PoRSupplyTransparencyLink}
                     changeHandler={(value) => {
                         updateField("PoRSupplyTransparencyLink", value);
@@ -74,7 +86,10 @@ function ReservesYield({ data, updateField }) {
                 />
             )}
 
-            <h2>Yield / Yield distribution</h2>
+            <h2 className="step-title">
+                Yield / Yield distribution
+                <Tooltip text="Configure whether the token accrues yield and how payouts are delivered to holders"></Tooltip>
+            </h2>
 
             <ToggleElement
                 title="Yield available"
@@ -96,15 +111,15 @@ function ReservesYield({ data, updateField }) {
                         optionsList={[
                             {
                                 label: "Automated distribution",
-                                value: "automated",
+                                value: "Automated distribution",
                             },
                             {
                                 label: "Chunks",
-                                value: "сhunks",
+                                value: "Chunks",
                             },
                             {
                                 label: "Claims",
-                                value: "сlaims",
+                                value: "Claims",
                             },
                         ]}
                         changeHandler={(value) => {
@@ -124,7 +139,7 @@ function ReservesYield({ data, updateField }) {
                     />
 
                     {data.YieldTransparency && (
-                        <TextField
+                        <UrlField
                             value={data.YieldTransparencyLink}
                             changeHandler={(value) => {
                                 updateField("YieldTransparencyLink", value);

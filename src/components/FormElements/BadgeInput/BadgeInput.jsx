@@ -8,13 +8,14 @@ function BadgeInput({
     value = [],
     locked = [],
     onChange,
-    label,
-    placeholder,
+    label = "",
+    placeholder = "",
     tooltip,
-    isRequired,
-    inputType,
-    dropdownOptions,
-    autoCompleteOptions,
+    isRequired = false,
+    inputType = "text",
+    dropdownOptions = [],
+    usePasteButton = false,
+    autoCompleteOptions = [],
 }) {
     const [inputValue, setInputValue] = useState("");
 
@@ -74,7 +75,7 @@ function BadgeInput({
                     <TextField
                         value={inputValue}
                         changeHandler={setInputValue}
-                        usePasteButton={true}
+                        usePasteButton={usePasteButton}
                         placeholder={placeholder}
                     />
                 </>
