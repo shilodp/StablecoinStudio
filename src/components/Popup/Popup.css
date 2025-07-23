@@ -86,7 +86,11 @@
         background-color: var(--color-blue-2);
     }
 
-    .secondary {
+    &:disabled {
+        background-color: var(--color-gray-4);
+    }
+
+    &.secondary {
         background-color: var(--color-blue-3);
 
         &:hover {

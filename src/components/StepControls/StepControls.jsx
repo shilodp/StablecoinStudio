@@ -30,11 +30,9 @@ function StepControls({
                 </button>
             )}
 
-            {currentStep < totalSteps ? (
-                <button onClick={handleNext} className="step-btn primary">
-                    Continue
-                </button>
-            ) : null}
+            <button onClick={handleNext} className="step-btn primary">
+                Continue
+            </button>
         </div>
     );
 }
