@@ -137,17 +137,6 @@ function ReservesYield({ data, updateField }) {
                         value="Yes"
                         label="Yes"
                     />
-
-                    {data.YieldTransparency && (
-                        <UrlField
-                            value={data.YieldTransparencyLink}
-                            changeHandler={(value) => {
-                                updateField("YieldTransparencyLink", value);
-                            }}
-                            placeholder="Paste Link"
-                            usePasteButton={true}
-                        />
-                    )}
                 </>
             )}
         </div>

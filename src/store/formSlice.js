@@ -41,7 +41,6 @@ const savedForm = JSON.parse(sessionStorage.getItem("formData")) || {
     isYieldAvailable: false,
     YieldDistributionMethod: "Automated distribution",
     YieldTransparency: false,
-    YieldTransparencyLink: "",
     UserendMinting: false,
     KYCFlagForMint: false,
     assetsForMint: {

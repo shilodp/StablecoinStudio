@@ -22,84 +22,83 @@
     flex-direction: column;
     overflow: hidden;
     animation: fadeIn 0.3s ease;
-}
 
-.popup-header {
-    padding: 50px 30px 20px;
-    flex-shrink: 0;
-    text-align: center;
-    position: relative;
+    .popup-header {
+        padding: 50px 90px 20px;
+        flex-shrink: 0;
+        text-align: center;
+        position: relative;
 
-    h2 {
-        margin: 0;
-        font-size: 28px;
-        color: var(--color-black);
+        h2 {
+            margin: 0;
+            font-size: 28px;
+            color: var(--color-black);
+        }
+
+        .close-button {
+            cursor: pointer;
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            border: none;
+            background-image: url(@assets/icons/cross.svg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            top: 30px;
+            right: 35px;
+        }
     }
 
-    .close-button {
-        cursor: pointer;
-        position: absolute;
-        width: 24px;
-        height: 24px;
-        background-color: transparent;
-        border: none;
-        background-image: url(@assets/icons/cross.svg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        top: 30px;
-        right: 35px;
-    }
-}
-
-.popup-body {
-    padding: 20px 30px 40px;
-    font-size: 16px;
-    color: var(--color-black-3);
-    overflow-y: auto;
-    flex-grow: 1;
-}
-
-.popup-footer {
-    padding: 30px 30px 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    flex-shrink: 0;
-}
-
-.popup-footer .button {
-    padding: 14px 16px;
-    background-color: var(--color-blue);
-    color: var(--color-white);
-    border: none;
-    border-radius: 16px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    height: 50px;
-    width: 100%;
-    max-width: 418px;
-
-    &:hover {
-        background-color: var(--color-blue-2);
+    .popup-body {
+        padding: 20px 90px 40px;
+        font-size: 16px;
+        color: var(--color-black-3);
+        overflow-y: auto;
+        flex-grow: 1;
     }
 
-    &:disabled {
-        background-color: var(--color-gray-4);
-    }
+    .popup-footer {
+        padding: 30px 90px 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        flex-shrink: 0;
 
-    &.secondary {
-        background-color: var(--color-blue-3);
+        .button {
+            padding: 14px 16px;
+            background-color: var(--color-blue);
+            color: var(--color-white);
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            height: 50px;
+            width: 100%;
+            max-width: 418px;
 
-        &:hover {
-            background-color: var(--color-blue-4);
+            &:hover {
+                background-color: var(--color-blue-2);
+            }
+
+            &:disabled {
+                background-color: var(--color-gray-4);
+            }
+
+            &.secondary {
+                background-color: var(--color-blue-3);
+
+                &:hover {
+                    background-color: var(--color-blue-4);
+                }
+            }
         }
     }
 }
 
-/* Анимация появления */
 @keyframes fadeIn {
     from {
         opacity: 0;

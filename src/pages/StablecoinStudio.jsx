@@ -290,13 +290,15 @@ function StablecoinStudio() {
                     <Popup
                         header={<h2>Disclamer</h2>}
                         body={
-                            <p>
-                                Make sure that all the data is correct. You
-                                won't be able to edit it later.
-                            </p>
+                            <div style={{ textAlign: "center" }}>
+                                <p>
+                                    Make sure that all the data is correct. You
+                                    won't be able to edit it later.
+                                </p>
+                            </div>
                         }
                         footer={
-                            <div style={{ textAlign: "center" }}>
+                            <>
                                 <button
                                     className="button secondary"
                                     onClick={() => {
@@ -315,7 +317,7 @@ function StablecoinStudio() {
                                 >
                                     Confirm
                                 </button>
-                            </div>
+                            </>
                         }
                         closeHandler={() => {
                             setShowPrivacy(false);
