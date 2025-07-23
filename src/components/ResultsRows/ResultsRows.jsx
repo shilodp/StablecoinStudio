@@ -5,7 +5,7 @@ function ResultsRows({ items }) {
     return (
         <div className="results-rows">
             {items.map((item) => {
-                return <ResultsRow label={item.label} value={item.value} />;
+                return <ResultsRow key={item.label} label={item.label} value={item.value} />;
             })}
         </div>
     );

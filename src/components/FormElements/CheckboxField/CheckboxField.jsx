@@ -3,7 +3,7 @@ import "./CheckboxField.css";
 function CheckboxField({
     label = "",
     optionLabel = "",
-    optionValue = null,
+    optionValue = false,
     isChecked = false,
     changeHandler,
     tooltip,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateField } from "../store/formSlice";
 import StepNavigation from "@components/StepNavigation/StepNavigation.jsx";
@@ -18,6 +18,16 @@ function StablecoinStudio() {
     const dispatch = useDispatch();
     const formData = useSelector((state) => state.form.formData);
     const [currentStep, setCurrentStep] = useState(1);
+    const [currenciesCources, setCurrenciesCources] = useState({});
+
+    useEffect(() => {
+        fetch(
+            "https://min-api.cryptocompare.com/data/pricemulti?fsyms=btc,eth,ltc,bch,bnb,eos,xrp,xlm,link,dot,yfi,sol,aed,ars,aud,bdt,bhd,bmd,brl,cad,chf,clp,cny,czk,dkk,eur,gbp,gel,hkd,huf,idr,ils,inr,jpy,krw,kwd,lkr,mmk,mxn,myr,ngn,nok,nzd,php,pkr,pln,rub,sar,sek,sgd,thb,try,twd,uah,vef,vnd,zar,xdr,xag,xau,bits,sats&tsyms=USD"
+        )
+            .then((res) => res.json())
+            .then((res) => setCurrenciesCources(res))
+            .catch((err) => console.error(err));
+    }, []);
 
     const STEPS = [
         {
@@ -49,6 +59,7 @@ function StablecoinStudio() {
             component: (
                 <LiquidityBootstrap
                     data={formData}
+                    currenciesCources={currenciesCources}
                     updateField={handleFieldChange}
                 />
             ),
@@ -128,9 +139,7 @@ function StablecoinStudio() {
                 }
                 break;
             case 4:
-                if (
-                    formData.adminAddress
-                ) {
+                if (formData.adminAddress) {
                     result.state = true;
                 } else {
                     result.errorMessage = "Please complete all required fields";

@@ -159,7 +159,7 @@ function Summary({ data }) {
     return (
         <div className="step-container summary-step">
             <h3 className="step-title">General</h3>
-            <ResultsRows items={generalValues} />
+            <ResultsRows items={generalValues} key="general" />
 
             <h3 className="step-title">Pricing</h3>
             <TableField
@@ -168,19 +168,19 @@ function Summary({ data }) {
             />
 
             <h3 className="step-title">Compliance</h3>
-            <ResultsRows items={complianceValues} />
+            <ResultsRows items={complianceValues} key="compliance" />
 
             <h3 className="step-title">Permissions</h3>
-            <ResultsRows items={permissionsValues} />
+            <ResultsRows items={permissionsValues} key="permissions" />
 
             <h3 className="step-title">Liquidity Bootstrap</h3>
-            <ResultsRows items={liquidityBootstrapValues} />
+            <ResultsRows items={liquidityBootstrapValues} key="liquiditybootstrap" />
 
             <h3 className="step-title">Reserves + Yield</h3>
-            <ResultsRows items={reservesYieldValues} />
+            <ResultsRows items={reservesYieldValues} key="reservesyield" />
 
             <h3 className="step-title">Minting</h3>
-            <ResultsRows items={mintingValues} />
+            <ResultsRows items={mintingValues} key="minting" />
         </div>
     );
 }

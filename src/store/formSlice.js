@@ -25,8 +25,13 @@ const savedForm = JSON.parse(sessionStorage.getItem("formData")) || {
     adminAccessControl: "single",
     adminAddress: "",
     proxyAdmin: false,
-    exchangeLiquidity: [],
-    totalLiquidity: 0,
+    exchangeLiquidity: [
+        {
+            asset: "BTC",
+            amount: Number(0).toFixed(2),
+        },
+    ],
+    totalLiquidity: 0.0,
     listOnOpenStable: false,
     regulation: "United States jurisdiction",
     isCollateralised: false,
@@ -45,7 +50,7 @@ const savedForm = JSON.parse(sessionStorage.getItem("formData")) || {
         BTC: false,
         custom: false,
     },
-    OnRampForMint: false
+    OnRampForMint: false,
 };
 
 const initialState = {
