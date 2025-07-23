@@ -33,5 +33,10 @@
         position: absolute;
         bottom: 16px;
         right: 15px;
+
+        &.no-label {
+            bottom: 50%;
+            transform: translateY(50%);
+        }
     }
 }

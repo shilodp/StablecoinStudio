@@ -34,7 +34,7 @@ function TextField({
                 {usePasteButton && (
                     <button
                         type="button"
-                        className="paste-button"
+                        className={`paste-button ${label ? '' : 'no-label'}`}
                         onClick={handlePasteClick}
                         title="Paste from clipboard"
                     ></button>
