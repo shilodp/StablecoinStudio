@@ -1,24 +1,22 @@
-/* Overlay */
 .popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* затемнение */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
 }
 
-/* Модальное окно */
 .popup {
-    background-color: #fff;
-    border-radius: 12px;
+    background-color: var(--color-white);
+    border-radius: 16px;
     width: 80%;
     max-width: 600px;
-    max-height: 90vh; /* ограничение по высоте окна */
+    max-height: 80vh;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
@@ -26,52 +24,75 @@
     animation: fadeIn 0.3s ease;
 }
 
-/* Заголовок */
 .popup-header {
-    padding: 16px 24px;
-    background-color: #f7fafc;
-    border-bottom: 1px solid #e2e8f0;
+    padding: 50px 30px 20px;
     flex-shrink: 0;
+    text-align: center;
+    position: relative;
+
+    h2 {
+        margin: 0;
+        font-size: 28px;
+        color: var(--color-black);
+    }
+
+    .close-button {
+        cursor: pointer;
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background-color: transparent;
+        border: none;
+        background-image: url(@assets/icons/cross.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        top: 30px;
+        right: 35px;
+    }
 }
 
-.popup-header h2 {
-    margin: 0;
-    font-size: 20px;
-    color: #2d3748;
-}
-
-/* Прокручиваемое тело */
 .popup-body {
-    padding: 20px 24px 50px;
+    padding: 20px 30px 40px;
     font-size: 16px;
-    color: #4a5568;
+    color: var(--color-black-3);
     overflow-y: auto;
     flex-grow: 1;
 }
 
-/* Подвал с кнопкой */
 .popup-footer {
-    padding: 12px 24px;
+    padding: 30px 30px 50px;
     display: flex;
-    justify-content: flex-end;
-    background-color: #f7fafc;
-    border-top: 1px solid #e2e8f0;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     flex-shrink: 0;
 }
 
-.popup-footer button {
-    padding: 8px 16px;
-    background-color: #2b6cb0;
-    color: white;
+.popup-footer .button {
+    padding: 14px 16px;
+    background-color: var(--color-blue);
+    color: var(--color-white);
     border: none;
-    border-radius: 6px;
-    font-weight: 600;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s ease;
-}
+    height: 50px;
+    width: 100%;
+    max-width: 418px;
 
-.popup-footer button:hover {
-    background-color: #2c5282;
+    &:hover {
+        background-color: var(--color-blue-2);
+    }
+
+    .secondary {
+        background-color: var(--color-blue-3);
+
+        &:hover {
+            background-color: var(--color-blue-4);
+        }
+    }
 }
 
 /* Анимация появления */

@@ -56,7 +56,10 @@ function StablecoinStudio() {
         {
             name: "Reserves + Yield",
             component: (
-                <ReservesYield data={formData} updateField={handleFieldChange} />
+                <ReservesYield
+                    data={formData}
+                    updateField={handleFieldChange}
+                />
             ),
         },
         {
@@ -122,6 +125,15 @@ function StablecoinStudio() {
                     result.state = true;
                 } else {
                     result.errorMessage = "Total weight must be exactly 100 %";
+                }
+                break;
+            case 4:
+                if (
+                    formData.adminAddress
+                ) {
+                    result.state = true;
+                } else {
+                    result.errorMessage = "Please complete all required fields";
                 }
                 break;
             default:

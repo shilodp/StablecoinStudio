@@ -119,9 +119,21 @@ function Register() {
             {showPrivacy &&
                 createPortal(
                     <Popup
-                        title="Privacy Policy"
-                        text={<PrivacyPolicyText />}
-                        clickHandler={setShowPrivacy}
+                        header={<h2>Privacy Policy</h2>}
+                        body={<PrivacyPolicyText />}
+                        footer={
+                            <button
+                                className="button"
+                                onClick={() => {
+                                    setShowPrivacy(false);
+                                }}
+                            >
+                                Close
+                            </button>
+                        }
+                        closeHandler={() => {
+                            setShowPrivacy(false);
+                        }}
                     />,
                     modalsRoot,
                     "privacy-policy"
@@ -130,9 +142,21 @@ function Register() {
             {showTerms &&
                 createPortal(
                     <Popup
-                        title="Terms and Conditions"
-                        text={<TermsCondionsText />}
-                        clickHandler={setShowTerms}
+                        header={<h2>Terms and Conditions</h2>}
+                        body={<TermsCondionsText />}
+                        footer={
+                            <button
+                                className="button"
+                                onClick={() => {
+                                    setShowTerms(false);
+                                }}
+                            >
+                                Close
+                            </button>
+                        }
+                        closeHandler={() => {
+                            setShowTerms(false);
+                        }}
                     />,
                     modalsRoot,
                     "terms-conditions"
