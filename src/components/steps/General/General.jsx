@@ -102,7 +102,6 @@ function General({ data, updateField }) {
                 changeHandler={(value) => {
                     updateField("metadata", value);
                 }}
-                isMultiple={true}
                 isRequired={false}
             />
         </div>

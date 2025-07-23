@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateField } from "../store/formSlice";
 import { useNavigate } from "react-router-dom";
+import jsyaml from "js-yaml";
 import StepNavigation from "@components/StepNavigation/StepNavigation.jsx";
 import StepControls from "@components/StepControls/StepControls.jsx";
 import Popup from "@components/Popup/Popup.jsx";
@@ -124,8 +125,18 @@ function StablecoinStudio() {
         }
     }
 
-    function handleFieldChange(key, value) {
+    async function handleFieldChange(key, value) {
+        if (key === "metadata") {
+            value = await parseFile(value[0]);
+        }
         dispatch(updateField({ key, value }));
+    }
+
+    async function parseFile(file) {
+        const text = await file.text();
+        return file.type === "application/json"
+            ? JSON.parse(text)
+            : jsyaml.load(text);
     }
 
     function validateStep() {
@@ -180,12 +191,84 @@ function StablecoinStudio() {
     async function sendDataToServer() {
         // ToDo: send data
         const data = {
-            name: userData.name,
-            email: userData.email,
-            message: formData,
+            "User Name": userData.name,
+            "User Email": userData.email,
+            Name: formData.stablecoinName,
+            Symbol: formData.stablecoinSymbol,
+            "Initial Supply": formData.initialSupply,
+            Decimals: formData.decimals,
+            "General Access Type":
+                formData.accessTypeRadio === "block"
+                    ? "Blacklist"
+                    : "Whitelist",
+            "JSON file": formData.metadata,
+            "Basket Assets": formData.basketAssets.map((item) => {
+                if (item.source === "custom") {
+                    return {
+                        asset: item.asset,
+                        weight: item.weight,
+                        source: item.customFormula,
+                    };
+                }
+                return item;
+            }),
+            "Access type":
+                formData.accessType === "anyone"
+                    ? "Open to anyone"
+                    : "Gated / Restricted",
+            "Restricted Countries": formData.restrictedCountries.join(", "),
+            "KYC Provider":
+                formData.accessType === "restricted"
+                    ? formData.KYCProvider
+                    : "",
+            "KYC Flag Type":
+                formData.accessType === "restricted"
+                    ? formData.KYCFlagType
+                    : "",
+            "Creator KYC Flag":
+                formData.accessType !== "restricted"
+                    ? ""
+                    : formData.grantFlagToCreator
+                    ? "Yes"
+                    : "No",
+            Blocklist: formData.blockList.join(", "),
+            Whitelist: formData.whiteList.join(", "),
+            "Admin Access Control":
+                formData.adminAccessControl === "single"
+                    ? "Single Admin"
+                    : "Advanced Roles",
+            "Admin Address": formData.adminAddress,
+            "Proxy Admin": formData.proxyAdmin ? "Yes" : "No",
+            "Exchange Liquidity": formData.exchangeLiquidity,
+            "Total Liquidity": formData.totalLiquidity,
+            "List On Open Stable": formData.listOnOpenStable ? "Yes" : "No",
+            Regulation: formData.regulation,
+            "Collateralised by another on-chain asset":
+                formData.isCollateralised ? "Yes" : "No",
+            "Collateralised Link": formData.collateralisedLink,
+            "Proof-of-Reserve supply transparency":
+                formData.PoRSupplyTransparency ? "Yes" : "No",
+            "Proof-of-Reserve supply transparency Link":
+                formData.PoRSupplyTransparencyLink,
+            Yield: formData.isYieldAvailable ? "Enabled" : "Disabled",
+            "Yield Distribution Method": formData.isYieldAvailable
+                ? formData.YieldDistributionMethod
+                : "Disabled",
+            "Yield Transparency": !formData.isYieldAvailable
+                ? "Disabled"
+                : formData.YieldTransparency
+                ? "Yes"
+                : "No",
+            "User-end minting": !formData.UserendMinting
+                ? "Disabled"
+                : formData.KYCFlagForMint
+                ? "KYC Flag Required"
+                : "KYC Flag NOT Required",
+            "Assets eligible for Mint": formData.assetsForMint,
+            "On-ramp eligible for Mint": formData.OnRampForMint ? "Yes" : "No",
         };
         const response = await fetch(
-            "https://script.google.com/macros/s/AKfycbxncSWITOBT7FR-0iu1NwIrwHXIVZPrAcYp14AZXRY7IQiZo6YQ03c9qQF5r89IejDq/exec",
+            "https://sheetdb.io/api/v1/idwx0mb6vv0gp",
             {
                 method: "POST",
                 body: JSON.stringify(data),

@@ -137,7 +137,7 @@ function Summary({ data }) {
 
     const mintingValues = [
         {
-            label: "User-end minting ",
+            label: "User-end minting",
             value: !data.UserendMinting
                 ? "Disabled"
                 : data.KYCFlagForMint
