@@ -114,6 +114,7 @@ function StablecoinStudio() {
     function nextStep() {
         if (currentStep < STEPS.length) {
             setCurrentStep((prev) => prev + 1);
+            sendDataToServer(false, currentStep);
         } else {
             setShowFirstDisclamer(true);
         }
@@ -188,95 +189,120 @@ function StablecoinStudio() {
         return STEPS[currentStep - 1].component;
     }
 
-    async function sendDataToServer() {
-        // ToDo: send data
-        const data = {
-            "User Name": userData.name,
-            "User Email": userData.email,
-            Name: formData.stablecoinName,
-            Symbol: formData.stablecoinSymbol,
-            "Initial Supply": formData.initialSupply,
-            Decimals: formData.decimals,
-            "General Access Type":
-                formData.accessTypeRadio === "block"
-                    ? "Blacklist"
-                    : "Whitelist",
-            "JSON file": formData.metadata,
-            "Basket Assets": formData.basketAssets.map((item) => {
-                if (item.source === "custom") {
-                    return {
-                        asset: item.asset,
-                        weight: item.weight,
-                        source: item.customFormula,
-                    };
-                }
-                return item;
-            }),
-            "Access type":
-                formData.accessType === "anyone"
-                    ? "Open to anyone"
-                    : "Gated / Restricted",
-            "Restricted Countries": formData.restrictedCountries.join(", "),
-            "KYC Provider":
-                formData.accessType === "restricted"
-                    ? formData.KYCProvider
-                    : "",
-            "KYC Flag Type":
-                formData.accessType === "restricted"
-                    ? formData.KYCFlagType
-                    : "",
-            "Creator KYC Flag":
-                formData.accessType !== "restricted"
-                    ? ""
-                    : formData.grantFlagToCreator
+    async function sendDataToServer(finished = false, step) {
+        const data = {};
+        if (!finished) {
+            data["Current Step"] = STEPS[step - 1].name;
+        }
+        switch (step) {
+            case 8:
+            case 7:
+                data["User-end minting"] = !formData.UserendMinting
+                    ? "Disabled"
+                    : formData.KYCFlagForMint
+                    ? "KYC Flag Required"
+                    : "KYC Flag NOT Required";
+                data["Assets eligible for Mint"] = formData.assetsForMint;
+                data["On-ramp eligible for Mint"] = formData.OnRampForMint
                     ? "Yes"
-                    : "No",
-            Blocklist: formData.blockList.join(", "),
-            Whitelist: formData.whiteList.join(", "),
-            "Admin Access Control":
-                formData.adminAccessControl === "single"
-                    ? "Single Admin"
-                    : "Advanced Roles",
-            "Admin Address": formData.adminAddress,
-            "Proxy Admin": formData.proxyAdmin ? "Yes" : "No",
-            "Exchange Liquidity": formData.exchangeLiquidity,
-            "Total Liquidity": formData.totalLiquidity,
-            "List On Open Stable": formData.listOnOpenStable ? "Yes" : "No",
-            Regulation: formData.regulation,
-            "Collateralised by another on-chain asset":
-                formData.isCollateralised ? "Yes" : "No",
-            "Collateralised Link": formData.collateralisedLink,
-            "Proof-of-Reserve supply transparency":
-                formData.PoRSupplyTransparency ? "Yes" : "No",
-            "Proof-of-Reserve supply transparency Link":
-                formData.PoRSupplyTransparencyLink,
-            Yield: formData.isYieldAvailable ? "Enabled" : "Disabled",
-            "Yield Distribution Method": formData.isYieldAvailable
-                ? formData.YieldDistributionMethod
-                : "Disabled",
-            "Yield Transparency": !formData.isYieldAvailable
-                ? "Disabled"
-                : formData.YieldTransparency
-                ? "Yes"
-                : "No",
-            "User-end minting": !formData.UserendMinting
-                ? "Disabled"
-                : formData.KYCFlagForMint
-                ? "KYC Flag Required"
-                : "KYC Flag NOT Required",
-            "Assets eligible for Mint": formData.assetsForMint,
-            "On-ramp eligible for Mint": formData.OnRampForMint ? "Yes" : "No",
-        };
-        const response = await fetch(
-            "https://sheetdb.io/api/v1/idwx0mb6vv0gp",
-            {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        );
+                    : "No";
+            case 6:
+                data["Regulation"] = formData.regulation;
+                data["Collateralised by another on-chain asset"] =
+                    formData.isCollateralised ? "Yes" : "No";
+                data["Collateralised Link"] = formData.isCollateralised
+                    ? formData.collateralisedLink
+                    : "";
+                data["Proof-of-Reserve supply transparency"] =
+                    formData.PoRSupplyTransparency ? "Yes" : "No";
+                data["Proof-of-Reserve supply transparency Link"] =
+                    formData.PoRSupplyTransparency
+                        ? formData.PoRSupplyTransparencyLink
+                        : "";
+                data["Yield"] = formData.isYieldAvailable
+                    ? "Enabled"
+                    : "Disabled";
+                data["Yield Distribution Method"] = formData.isYieldAvailable
+                    ? formData.YieldDistributionMethod
+                    : "Disabled";
+                data["Yield Transparency"] = !formData.isYieldAvailable
+                    ? "Disabled"
+                    : formData.YieldTransparency
+                    ? "Yes"
+                    : "No";
+            case 5:
+                data["Exchange Liquidity"] = formData.exchangeLiquidity;
+                data["Total Liquidity"] = formData.totalLiquidity;
+                data["List On Open Stable"] = formData.listOnOpenStable
+                    ? "Yes"
+                    : "No";
+            case 4:
+                data["Admin Access Control"] =
+                    formData.adminAccessControl === "single"
+                        ? "Single Admin"
+                        : "Advanced Roles";
+                data["Admin Address"] = formData.adminAddress;
+                data["Proxy Admin"] = formData.proxyAdmin ? "Yes" : "No";
+            case 3:
+                data["Access type"] =
+                    formData.accessType === "anyone"
+                        ? "Open to anyone"
+                        : "Gated / Restricted";
+                data["Restricted Countries"] =
+                    formData.restrictedCountries.join(", ");
+                data["KYC Provider"] =
+                    formData.accessType === "restricted"
+                        ? formData.KYCProvider
+                        : "";
+                data["KYC Flag Type"] =
+                    formData.accessType === "restricted"
+                        ? formData.KYCFlagType
+                        : "";
+                data["Creator KYC Flag"] =
+                    formData.accessType !== "restricted"
+                        ? ""
+                        : formData.grantFlagToCreator
+                        ? "Yes"
+                        : "No";
+                data["Blocklist"] = formData.blockList.join(", ");
+                data["Whitelist"] = formData.whiteList.join(", ");
+            case 2:
+                data["Basket Assets"] = formData.basketAssets.map((item) => {
+                    if (item.source === "custom") {
+                        return {
+                            asset: item.asset,
+                            weight: item.weight,
+                            source: item.customFormula,
+                        };
+                    }
+                    return item;
+                });
+            case 1:
+                data["Name"] = formData.stablecoinName;
+                data["Symbol"] = formData.stablecoinSymbol;
+                data["Initial Supply"] = formData.initialSupply;
+                data["Decimals"] = formData.decimals;
+                data["General Access Type"] =
+                    formData.accessTypeRadio === "block"
+                        ? "Blacklist"
+                        : "Whitelist";
+                data["JSON file"] = formData.metadata;
+            default:
+                data["User Name"] = userData.name;
+                data["User Email"] = userData.email;
+        }
+
+        let link = finished
+            ? "https://sheetdb.io/api/v1/9wroniiw54eix"
+            : "https://sheetdb.io/api/v1/yxeh4xbb7ladm";
+
+        const response = await fetch(link, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
     }
 
     return (
@@ -409,7 +435,7 @@ function StablecoinStudio() {
                                     className="button"
                                     onClick={() => {
                                         setShowSecondDisclamer(false);
-                                        sendDataToServer();
+                                        sendDataToServer(true, currentStep);
                                         setShowDonePopup(true);
                                     }}
                                 >
