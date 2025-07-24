@@ -18,7 +18,7 @@ function UrlField({
     };
     return (
         <div className="url-input">
-            <label>
+            <label className={`${label ? "" : "no-label"}`}>
                 {label}
                 {label && isRequired && <span>*</span>}
                 <input
@@ -33,7 +33,7 @@ function UrlField({
                 {usePasteButton && (
                     <button
                         type="button"
-                        className={`paste-button ${label ? "" : "no-label"}`}
+                        className="paste-button"
                         onClick={handlePasteClick}
                         title="Paste from clipboard"
                     ></button>
