@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateField } from "../store/formSlice";
 import { useNavigate } from "react-router-dom";
 import jsyaml from "js-yaml";
+import api from "@assets/json/api.json";
 import StepNavigation from "@components/StepNavigation/StepNavigation.jsx";
 import StepControls from "@components/StepControls/StepControls.jsx";
 import Popup from "@components/Popup/Popup.jsx";
@@ -292,9 +293,7 @@ function StablecoinStudio() {
                 data["User Email"] = userData.email;
         }
 
-        let link = finished
-            ? "https://sheetdb.io/api/v1/9wroniiw54eix"
-            : "https://sheetdb.io/api/v1/yxeh4xbb7ladm";
+        let link = finished ? api.key.final : api.key.step;
 
         const response = await fetch(link, {
             method: "POST",
